@@ -2,11 +2,21 @@ const data = document.querySelectorAll(".data");
 const information = document.querySelectorAll(".info");
 const nextStep = document.querySelectorAll(".next-step");
 const chart = document.querySelector("#results1");
+var avgText = document.getElementById("av");
+var rangeText = document.getElementById("ra");
+var maxText = document.getElementById("ma");
+var trendText = document.getElementById("tr");
+var repeatText = document.getElementById("re");
 let lastOption = null;
 
 window.onload = function() {
     console.log("test");
     console.log(data);
+    avgText.style.visibility = "hidden";
+    rangeText.style.visibility = "hidden";
+    maxText.style.visibility = "hidden";
+    trendText.style.visibility = "hidden";
+    repeatText.style.visibility = "hidden";
     data.forEach((datum) => {
         datum.addEventListener("click", choose_data, false);
     });
@@ -19,10 +29,7 @@ window.onload = function() {
 }
 
 function choose_data(event) {
-    const target = event.target;
-    // TODO: figure out why it is not adding target id 
-    // TODO: figure out why it is also changing the formatting 
-    chart.innerHTML = target.id + " chart";
+    console.log(chart);
 }
 
 function check_option(event, option) {
@@ -35,7 +42,7 @@ function check_option(event, option) {
         case "range": 
             range();
             break;
-        case "max-min": 
+        case "maxMin": 
             maxMin();
             break;
         case "trend": 
@@ -52,27 +59,29 @@ function check_option(event, option) {
 
 function average(event) {
     console.log("this is average");
-    // display text containing the average
+    avgText.style.visibility = "visible";
 }
 
 function range(event) {
     console.log("this is range");
-    // display text containing the range 
+    rangeText.style.visibility = "visible"; 
 }
 
 function maxMin(event) {
     console.log("this is maxMin");
-    // display text containing the max and min
+    maxText.style.visibility = "visible";
 }
 
 function trend(event) {
     console.log("this is trend");
-    // display text containing the overall trend
+    trendText.style.visibility = "visible";
 }
 
 function repeat(event) {
     check_option(null, lastOption);
-    console.log("this is repeat, " + lastOption);
+    // TODO: get repeat text to show last operation 
+    repeatText.style.visibility = "visible"
+    console.log("this is repeat");
 }
 
 function do_next(event, option) {
@@ -94,15 +103,15 @@ function do_next(event, option) {
 
 function new_data(event) {
     console.log("this is new data");
-    // reopen the where will your data come from twisty 
+    // jump to where will your data come from  
 }
 
 function new_info(event) {
     console.log("this is new info");
-    // reopen the what do you want to know about the info twisty
+    // jump to what do you want to know about the info 
 }
 
 function exit(event) {
     console.log("this is exit");
-    // close all twisties and go to a new page that says thank you and goodbye 
+    // hide all elements and display thank you and goodbye message
 }
